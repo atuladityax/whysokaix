@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import "../RandomUser/RandomUser.css"
+import "../RandomUser/RandomUser.css";
 
 const Randomuser = () => {
   const [user, setUser] = useState(null);
