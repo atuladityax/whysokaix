@@ -17,7 +17,7 @@ const Coctaildb = () => {
     }
   };
   useEffect(() => {
-    getCocktail();
+    getCocktail;
   }, []);
 
   if (!drinks) {

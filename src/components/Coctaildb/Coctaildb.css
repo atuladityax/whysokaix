@@ -218,8 +218,6 @@
   color: var(--text-muted);
   font-size: 0.875rem;
   line-height: 1.55;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
 }
 
 .ingredient-grid {
@@ -235,8 +233,6 @@
   padding: 0.9rem 1rem;
   border: 1px solid var(--border-subtle);
   border-radius: 0.75rem;
-  background: var(--surface-raised);
-  color: var(--text-primary);
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -438,59 +434,3 @@
   font-size: 1.1rem;
 }
 
-@media (max-width: 900px) {
-  .drink-grid,
-  .ingredient-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .popular-drinks-header {
-    align-items: stretch;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .browse-letters {
-    gap: 0.35rem;
-    padding: 0.85rem;
-  }
-
-  .browse-letters button {
-    min-width: 2rem;
-    min-height: 2rem;
-    padding: 0.3rem 0.45rem;
-    font-size: 0.75rem;
-  }
-
-  .popular-drinks-header .right {
-    width: 100%;
-    margin-top: 0;
-  }
-
-  .drink-grid,
-  .ingredient-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .drink-grid {
-    max-width: 400px;
-  }
-
-  .ingredient-details {
-    grid-template-columns: 1fr;
-  }
-
-  .ingredient-details > h1 {
-    grid-column: auto;
-  }
-
-  .random-drink {
-    grid-template-columns: 1fr;
-  }
-
-  .random-drink-actions {
-    text-align: center;
-  }
-}
