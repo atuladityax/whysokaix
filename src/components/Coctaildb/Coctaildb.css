@@ -10,20 +10,132 @@
   min-height: 100vh;
   padding: clamp(2rem, 6vw, 5rem) 1.25rem;
   box-sizing: border-box;
-  background:
-    radial-gradient(ellipse at top left, #fff0d9 0, transparent 42%),
-    #faf8f4;
-  color: #29231f;
+  background: var(--brand-jet-black);
+  color: var(--text-primary);
 }
 
 .popular-drinks-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  align-items: end;
+  gap: 1.5rem 2rem;
   width: min(100%, 1200px);
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.5rem;
+}
+
+.browse-letters {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
+}
+
+.browse-letters > p {
+  flex-basis: 100%;
+  margin: 0 0 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.browse-letters button {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.browse-letters button:hover {
+  transform: translateY(-1px);
+  border-color: var(--brand-hot-pink);
+  background: rgb(255 45 168 / 14%);
+  color: var(--brand-hot-pink);
+}
+
+.browse-letters button.active {
+  border-color: var(--brand-chartreuse);
+  background: var(--brand-chartreuse);
+  color: var(--brand-jet-black);
+}
+
+.browse-letters button:focus-visible {
+  outline: 3px solid rgb(255 45 168 / 55%);
+  outline-offset: 2px;
+}
+
+.popular-drinks-header .right {
+  width: min(100%, 360px);
+  margin-top: 1rem;
+}
+
+.popular-drinks-header .right form {
+  margin: 0;
+}
+
+.popular-drinks-header .right input {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.8rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23b8b8b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E")
+      no-repeat 0.9rem center,
+    var(--surface);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.popular-drinks-header .right input:hover {
+  border-color: var(--brand-hot-pink);
+  box-shadow: 0 0.65rem 1.6rem rgb(255 45 168 / 12%);
+}
+
+.popular-drinks-header .right input:focus-visible {
+  border-color: var(--brand-hot-pink);
+  outline: 3px solid rgb(255 45 168 / 28%);
+  outline-offset: 2px;
+  box-shadow: 0 0.75rem 1.75rem rgb(255 45 168 / 14%);
 }
 
 .popular-drinks-header > p {
   margin: 0 0 0.5rem;
-  color: #a45b28;
+  color: var(--brand-hot-pink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.popular-drinks-header .left > p {
+  margin: 0 0 0.5rem;
+  color: var(--brand-hot-pink);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -31,6 +143,7 @@
 
 .popular-drinks-header h1 {
   margin: 0;
+  color: var(--brand-chartreuse);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   letter-spacing: -0.04em;
 }
@@ -38,13 +151,13 @@
 .popular-drinks-header > span {
   display: inline-block;
   margin-top: 0.65rem;
-  color: #75665a;
+  color: var(--text-muted);
 }
 
 .popular-drinks-loading {
   width: min(100%, 1200px);
   margin: 0 auto;
-  color: #75665a;
+  color: var(--text-muted);
 }
 
 .drink-card img {
@@ -58,32 +171,32 @@
 
 .drink-card {
   overflow: hidden;
-  border: 1px solid #eee6dc;
+  border: 1px solid var(--border-subtle);
   border-radius: 1.1rem;
-  background: #fff;
-  box-shadow: 0 0.75rem 2rem rgb(70 48 28 / 7%);
+  background: var(--surface);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 40%);
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
 }
 
 .drink-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 1.25rem 2.5rem rgb(70 48 28 / 12%);
+  transform: translateY(-5px);
+  box-shadow: 0 1.25rem 2.5rem rgb(255 45 168 / 12%);
 }
 
 .drink-card:hover img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .drink-card-content {
-  padding: 1rem 1.1rem 1.25rem;
+  padding: 1.1rem 1.15rem 1.3rem;
 }
 
 .drink-card-content h2 {
   margin: 0;
-  color: #29231f;
-  font-size: 1.1rem;
+  color: var(--brand-chartreuse);
+  font-size: 1.05rem;
   line-height: 1.35;
 }
 
@@ -92,8 +205,8 @@
   margin: 0.65rem 0 0;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  background: #fff0d9;
-  color: #8d4c22;
+  background: var(--brand-chartreuse);
+  color: var(--brand-jet-black);
   font-size: 0.78rem;
   font-weight: 600;
 }
@@ -102,9 +215,9 @@
   display: -webkit-box;
   overflow: hidden;
   margin: 0.75rem 0 0;
-  color: #75665a;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
@@ -120,10 +233,10 @@
 
 .ingredient-grid li {
   padding: 0.9rem 1rem;
-  border: 1px solid #f1e7d8;
+  border: 1px solid var(--border-subtle);
   border-radius: 0.75rem;
-  background: #fffaf3;
-  color: #47382e;
+  background: var(--surface-raised);
+  color: var(--text-primary);
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -131,10 +244,8 @@
 .ingredient-page {
   min-height: 100vh;
   padding: clamp(2rem, 6vw, 5rem) 1.25rem;
-  background:
-    radial-gradient(ellipse at top left, #fff0d9 0, transparent 42%),
-    #faf8f4;
-  color: #29231f;
+  background: var(--brand-jet-black);
+  color: var(--text-primary);
   box-sizing: border-box;
 }
 
@@ -152,7 +263,7 @@
 
 .ingredient-header p {
   margin: 0 0 0.5rem;
-  color: #a45b28;
+  color: var(--brand-hot-pink);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -160,6 +271,7 @@
 
 .ingredient-header h1 {
   margin: 0;
+  color: var(--brand-chartreuse);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   letter-spacing: -0.04em;
 }
@@ -170,10 +282,10 @@
   align-items: start;
   gap: 1.5rem 2rem;
   padding: clamp(1.25rem, 4vw, 2.5rem);
-  border: 1px solid #eee6dc;
+  border: 1px solid var(--border-subtle);
   border-radius: 1.5rem;
-  background: #fff;
-  box-shadow: 0 1.5rem 4rem rgb(70 48 28 / 8%);
+  background: var(--surface);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 45%);
 }
 
 .ingredient-details > h1 {
@@ -189,7 +301,7 @@
   aspect-ratio: 4 / 3;
   border-radius: 1rem;
   object-fit: cover;
-  background: #f4ede4;
+  background: var(--surface-raised);
 }
 
 .ingredient-details .ingredient-grid {
@@ -200,10 +312,8 @@
   min-height: 100vh;
   padding: clamp(2rem, 6vw, 5rem) 1.25rem;
   box-sizing: border-box;
-  background:
-    radial-gradient(ellipse at top left, #fff0d9 0, transparent 42%),
-    #faf8f4;
-  color: #29231f;
+  background: var(--brand-jet-black);
+  color: var(--text-primary);
 }
 
 .random-header,
@@ -228,7 +338,7 @@
 .random-header > p,
 .random-drink-eyebrow {
   margin: 0 0 0.5rem;
-  color: #a45b28;
+  color: var(--brand-hot-pink);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -237,6 +347,7 @@
 
 .random-header h1 {
   margin: 0;
+  color: var(--brand-chartreuse);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   letter-spacing: -0.04em;
 }
@@ -247,10 +358,10 @@
   align-items: center;
   gap: clamp(1rem, 3vw, 2rem);
   padding: clamp(1rem, 3vw, 1.75rem);
-  border: 1px solid #eee6dc;
+  border: 1px solid var(--border-subtle);
   border-radius: 1.5rem;
-  background: #fff;
-  box-shadow: 0 1.5rem 4rem rgb(70 48 28 / 8%);
+  background: var(--surface);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 45%);
 }
 
 .random-drink-photo {
@@ -258,13 +369,13 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: 1rem;
-  background: #f4ede4;
+  background: var(--surface-raised);
   object-fit: cover;
 }
 
 .random-drink-content h2 {
   margin: 0;
-  color: #29231f;
+  color: var(--brand-chartreuse);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   letter-spacing: -0.035em;
 }
@@ -274,15 +385,15 @@
   margin: 0.9rem 0 0;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: #fff0d9;
-  color: #8d4c22;
+  background: var(--brand-chartreuse);
+  color: var(--brand-jet-black);
   font-size: 0.85rem;
   font-weight: 600;
 }
 
 .random-drink-instructions {
   margin: 1.25rem 0 0;
-  color: #64564b;
+  color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -297,9 +408,9 @@
   padding: 0.85rem 1.25rem;
   border: 0;
   border-radius: 999px;
-  background: #8d4c22;
-  box-shadow: 0 0.5rem 1.25rem rgb(141 76 34 / 18%);
-  color: #fffaf3;
+  background: var(--brand-hot-pink);
+  box-shadow: 0 0.5rem 1.25rem rgb(255 45 168 / 20%);
+  color: var(--brand-jet-black);
   cursor: pointer;
   font: inherit;
   font-weight: 650;
@@ -311,19 +422,19 @@
 
 .random-drink-button:hover {
   transform: translateY(-2px);
-  background: #713b1c;
-  box-shadow: 0 0.75rem 1.5rem rgb(113 59 28 / 22%);
+  background: #ff63be;
+  box-shadow: 0 0.75rem 1.5rem rgb(255 45 168 / 28%);
 }
 
 .random-drink-button:focus-visible {
-  outline: 3px solid #d99a63;
+  outline: 3px solid var(--brand-chartreuse);
   outline-offset: 3px;
 }
 
 .random-loading {
   width: min(100%, 980px);
   margin: 0 auto;
-  color: #75665a;
+  color: var(--text-muted);
   font-size: 1.1rem;
 }
 
@@ -335,6 +446,29 @@
 }
 
 @media (max-width: 560px) {
+  .popular-drinks-header {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .browse-letters {
+    gap: 0.35rem;
+    padding: 0.85rem;
+  }
+
+  .browse-letters button {
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0.3rem 0.45rem;
+    font-size: 0.75rem;
+  }
+
+  .popular-drinks-header .right {
+    width: 100%;
+    margin-top: 0;
+  }
+
   .drink-grid,
   .ingredient-grid {
     grid-template-columns: 1fr;

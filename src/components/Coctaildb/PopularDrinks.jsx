@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 const AllDrinks = () => {
   const [drinks, setDrinks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search , setSearch] = useState("");
+  const [selectedLetter, setSelectedLetter] = useState("");
   const navigation = useNavigate();
 
   useEffect(() => {
@@ -36,6 +38,18 @@ const AllDrinks = () => {
     getAllDrinks();
   }, []);
 
+  const filteredDrinks = drinks.filter((drink) => {
+  const matchesSearch = drink.strDrink
+    .toLowerCase()
+    .includes(search.trim().toLowerCase());
+  const matchesLetter =
+    selectedLetter === "" ||
+    drink.strDrink.toUpperCase().startsWith(selectedLetter);
+  return matchesSearch && matchesLetter;
+});
+
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
   if (loading) {
     return (
       <main className="popular-drinks-page">
@@ -46,15 +60,43 @@ const AllDrinks = () => {
 
   return (
     <>
+    
     <main className="popular-drinks-page">
       <header className="popular-drinks-header">
-        <p>THE COCKTAIL GUIDE</p>
+        <div className="browse-letters">
+        <p>Browse By Name</p>
+        <button
+         className={selectedLetter === "" ? "active" : ""}
+         onClick={() => setSelectedLetter("")}>
+         All
+         </button>
+        {alphabet.map((letter) => (
+        <button
+        key={letter}
+        className={selectedLetter === letter ? "active" : ""}
+        onClick={() => setSelectedLetter(letter)}
+        >
+      {letter}
+    </button>
+  ))}
+</div>
+       <div className="left">
+         <p>THE COCKTAIL GUIDE</p>
         <h1>Explore all drinks</h1>
-        <span>{drinks.length} cocktails to discover</span>
+        <span>{filteredDrinks.length} cocktails to discover</span>
+       </div>
+       <div className="right">
+       <form onSubmit={(e) => e.preventDefault()} action="">
+         <input type="text" 
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        />
+       </form>
+       </div>
       </header>
 
       <div className="drink-grid">
-        {drinks.map((drink) => (
+        {filteredDrinks.map((drink) => (
           <div className="drink-card" key={drink.idDrink}>
             <img
               src={drink.strDrinkThumb}

@@ -1,0 +1,88 @@
+#root > div > form[action=""] {
+  display: flex;
+  gap: 0.75rem;
+  width: min(100% - 2.5rem, 760px);
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 40%);
+  box-sizing: border-box;
+}
+
+#root > div > form[action=""] input {
+  min-width: 0;
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+#root > div > form[action=""] input:focus-visible {
+  border-color: var(--brand-hot-pink);
+  outline: 3px solid rgb(255 45 168 / 30%);
+}
+
+#root > div > form[action=""] button {
+  padding: 0.8rem 1.25rem;
+  border: 0;
+  border-radius: 0.7rem;
+  background: var(--brand-hot-pink);
+  color: var(--brand-jet-black);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  transition: background-color 160ms ease;
+}
+
+#root > div > form[action=""] button:hover {
+  background: #ff63be;
+}
+
+#root > div > form[action=""] button:focus-visible {
+  outline: 3px solid var(--brand-chartreuse);
+  outline-offset: 3px;
+}
+
+#root > div > .details:first-child,
+#root > div > form[action=""] + .container {
+  width: min(100% - 2.5rem, 760px);
+  margin: 0 auto 1.5rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 40%);
+  box-sizing: border-box;
+}
+
+#root > div > .details:first-child h1,
+#root > div > form[action=""] + .container .details h1 {
+  margin: 0;
+  color: var(--brand-chartreuse);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+#root > div > form[action=""] + .container .details p {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  #root > div > form[action=""] {
+    gap: 0.5rem;
+  }
+
+  #root > div > form[action=""] button {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
