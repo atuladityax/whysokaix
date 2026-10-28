@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Coctaildb.css";
+import { useNavigate } from "react-router-dom";
 
 const Coctaildb = () => {
   const [drinks, setDrinks] = useState(null);
+  const navigate = useNavigate("");
   const getCocktail = async () => {
     try {
       const response = await axios.get(
@@ -17,7 +19,7 @@ const Coctaildb = () => {
     }
   };
   useEffect(() => {
-    getCocktail;
+    getCocktail();
   }, []);
 
   if (!drinks) {
@@ -30,6 +32,7 @@ const Coctaildb = () => {
   const drink = drinks.drinks[0];
   return (
     <div className="random-page">
+     
       <header className="random-header">
         <p>THE COCKTAIL GUIDE</p>
         <h1>Today's pour</h1>
@@ -50,6 +53,9 @@ const Coctaildb = () => {
         </div>
       </section>
       <div className="random-drink-actions">
+         <button
+      onClick={() => navigate("/")}
+      >Back</button>
         <button className="random-drink-button" onClick={getCocktail}>
           Discover another drink
         </button>

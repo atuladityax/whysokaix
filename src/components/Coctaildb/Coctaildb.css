@@ -1,31 +1,151 @@
-.drink-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
-  width: min(100%, 1200px);
-  margin: 0 auto;
-}
-
-.popular-drinks-page {
+.popular-drinks-page,
+.ingredient-page,
+.random-page {
   min-height: 100vh;
   padding: clamp(2rem, 6vw, 5rem) 1.25rem;
   box-sizing: border-box;
   background: var(--brand-jet-black);
   color: var(--text-primary);
 }
+.left > p,
+.ingredient-header p,
+.random-header > p,
+.random-drink-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--brand-hot-pink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
+.popular-drinks-header h1,
+.ingredient-header h1,
+.random-header h1 {
+  margin: 0;
+  color: var(--brand-chartreuse);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.04em;
+}
+
+.left > span,
+.popular-drinks-loading,
+.random-loading {
+  color: var(--text-muted);
+}
+
+.left > span {
+  display: inline-block;
+  margin-top: 0.65rem;
+}
+
+.popular-drinks-loading,
+.random-loading {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
 .popular-drinks-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 360px) auto;
+  align-items: center;
   gap: 1.5rem 2rem;
   width: min(100%, 1200px);
   margin: 0 auto 2.5rem;
 }
 
+.popular-drinks-header .left {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.popular-drinks-header .right {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.popular-drinks-header .random {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.popular-drinks-header .random button,
+.random-page > button {
+  min-height: 2.9rem;
+  padding: 0.75rem 1.15rem;
+  border: 1px solid var(--brand-hot-pink);
+  border-radius: 999px;
+  background: var(--brand-hot-pink);
+  box-shadow: 0 0.5rem 1.25rem rgb(255 45 168 / 16%);
+  color: var(--brand-jet-black);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.popular-drinks-header .random button:hover,
+.random-page > button:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-chartreuse);
+  background: var(--brand-chartreuse);
+  box-shadow: 0 0.65rem 1.5rem rgb(212 255 63 / 15%);
+}
+
+.popular-drinks-header .random button:focus-visible,
+.random-page > button:focus-visible {
+  outline: 3px solid var(--brand-chartreuse);
+  outline-offset: 3px;
+}
+
+.random-page > button {
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.popular-drinks-header .right form {
+  margin: 0;
+}
+
+.popular-drinks-header .right input {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  box-sizing: border-box;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.8rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23b8b8b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E")
+      no-repeat 0.9rem center,
+    var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.popular-drinks-header .right form,
+.popular-drinks-header .right input {
+  width: 100%;
+}
+
+.popular-drinks-header .right input:hover,
+.popular-drinks-header .right input:focus-visible {
+  border-color: var(--brand-hot-pink);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(255 45 168 / 25%);
+}
 .browse-letters {
   display: flex;
   grid-column: 1 / -1;
+  grid-row: 2;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem;
@@ -33,7 +153,6 @@
   border: 1px solid var(--border-subtle);
   border-radius: 1rem;
   background: var(--surface);
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
 }
 
 .browse-letters > p {
@@ -58,17 +177,11 @@
   font: inherit;
   font-size: 0.8rem;
   font-weight: 650;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
+  transition: all 160ms ease;
 }
 
 .browse-letters button:hover {
-  transform: translateY(-1px);
   border-color: var(--brand-hot-pink);
-  background: rgb(255 45 168 / 14%);
   color: var(--brand-hot-pink);
 }
 
@@ -77,87 +190,25 @@
   background: var(--brand-chartreuse);
   color: var(--brand-jet-black);
 }
-
-.browse-letters button:focus-visible {
-  outline: 3px solid rgb(255 45 168 / 55%);
-  outline-offset: 2px;
-}
-
-.popular-drinks-header .right {
-  width: min(100%, 360px);
-  margin-top: 1rem;
-}
-
-.popular-drinks-header .right form {
-  margin: 0;
-}
-
-.popular-drinks-header .right input {
-  display: block;
-  width: 100%;
-  min-height: 3rem;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.8rem;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23b8b8b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E")
-      no-repeat 0.9rem center,
-    var(--surface);
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
-  color: var(--text-primary);
-  font: inherit;
-  font-size: 0.95rem;
-  box-sizing: border-box;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.popular-drinks-header .right input:hover {
-  border-color: var(--brand-hot-pink);
-  box-shadow: 0 0.65rem 1.6rem rgb(255 45 168 / 12%);
-}
-
-.popular-drinks-header .right input:focus-visible {
-  border-color: var(--brand-hot-pink);
-  outline: 3px solid rgb(255 45 168 / 28%);
-  outline-offset: 2px;
-  box-shadow: 0 0.75rem 1.75rem rgb(255 45 168 / 14%);
-}
-
-.popular-drinks-header > p {
-  margin: 0 0 0.5rem;
-  color: var(--brand-hot-pink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.popular-drinks-header .left > p {
-  margin: 0 0 0.5rem;
-  color: var(--brand-hot-pink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.popular-drinks-header h1 {
-  margin: 0;
-  color: var(--brand-chartreuse);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.04em;
-}
-
-.popular-drinks-header > span {
-  display: inline-block;
-  margin-top: 0.65rem;
-  color: var(--text-muted);
-}
-
-.popular-drinks-loading {
+.drink-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
   width: min(100%, 1200px);
   margin: 0 auto;
-  color: var(--text-muted);
+}
+
+.drink-card {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.1rem;
+  background: var(--surface);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.drink-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1.25rem 2.5rem rgb(255 45 168 / 12%);
 }
 
 .drink-card img {
@@ -167,22 +218,6 @@
   object-fit: cover;
   cursor: pointer;
   transition: transform 180ms ease;
-}
-
-.drink-card {
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  border-radius: 1.1rem;
-  background: var(--surface);
-  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 40%);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.drink-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 1.25rem 2.5rem rgb(255 45 168 / 12%);
 }
 
 .drink-card:hover img {
@@ -197,36 +232,103 @@
   margin: 0;
   color: var(--brand-chartreuse);
   font-size: 1.05rem;
-  line-height: 1.35;
-}
-
-.drink-card-category {
-  display: inline-block;
-  margin: 0.65rem 0 0;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: var(--brand-chartreuse);
-  color: var(--brand-jet-black);
-  font-size: 0.78rem;
-  font-weight: 600;
 }
 
 .drink-card-instructions {
   display: -webkit-box;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0.75rem 0 0;
   color: var(--text-muted);
   font-size: 0.875rem;
   line-height: 1.55;
 }
+.drink-card-category,
+.random-drink-category {
+  display: inline-block;
+  margin: 0.65rem 0 0;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--brand-chartreuse);
+  color: var(--brand-jet-black);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.ingredient-header,
+.ingredient-details,
+.random-header,
+.random-drink,
+.random-drink-actions {
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+.ingredient-header,
+.ingredient-details,
+.random-header,
+.random-drink-actions {
+  width: min(100%, 980px);
+}
+
+.ingredient-header,
+.random-header {
+  margin-bottom: 1.75rem;
+}
+
+.ingredient-details,
+.random-drink {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.5rem 2rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.5rem;
+  background: var(--surface);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 45%);
+}
+
+.ingredient-details {
+  align-items: start;
+}
+
+.random-drink {
+  width: min(100%, 760px);
+  align-items: center;
+}
+
+.ingredient-details > h1 {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.035em;
+}
+
+.random-drink-content h2 {
+  margin: 0;
+  color: var(--brand-chartreuse);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.035em;
+}
+
+.ingredient-photo,
+.random-drink-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 1rem;
+  background: var(--surface-raised);
+  object-fit: cover;
+}
 
 .ingredient-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-self: center;
   gap: 0.75rem;
+  margin: 0;
   padding: 0;
   list-style: none;
-  margin: 0;
 }
 
 .ingredient-grid li {
@@ -237,167 +339,42 @@
   line-height: 1.5;
 }
 
-.ingredient-page {
-  min-height: 100vh;
-  padding: clamp(2rem, 6vw, 5rem) 1.25rem;
-  background: var(--brand-jet-black);
-  color: var(--text-primary);
-  box-sizing: border-box;
-}
-
-.ingredient-header,
-.ingredient-details {
-  width: min(100%, 980px);
-  margin-right: auto;
-  margin-left: auto;
-  box-sizing: border-box;
-}
-
-.ingredient-header {
-  margin-bottom: 1.75rem;
-}
-
-.ingredient-header p {
-  margin: 0 0 0.5rem;
-  color: var(--brand-hot-pink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.ingredient-header h1 {
-  margin: 0;
-  color: var(--brand-chartreuse);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.04em;
-}
-
-.ingredient-details {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-  gap: 1.5rem 2rem;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  border: 1px solid var(--border-subtle);
-  border-radius: 1.5rem;
-  background: var(--surface);
-  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 45%);
-}
-
-.ingredient-details > h1 {
-  grid-column: 1 / -1;
-  margin: 0;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  letter-spacing: -0.035em;
-}
-
-.ingredient-photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 1rem;
-  object-fit: cover;
-  background: var(--surface-raised);
-}
-
-.ingredient-details .ingredient-grid {
-  align-self: center;
-}
-
-.random-page {
-  min-height: 100vh;
-  padding: clamp(2rem, 6vw, 5rem) 1.25rem;
-  box-sizing: border-box;
-  background: var(--brand-jet-black);
-  color: var(--text-primary);
-}
-
-.random-header,
-.random-drink {
-  margin-right: auto;
-  margin-left: auto;
-  box-sizing: border-box;
-}
-
-.random-header {
-  width: min(100%, 980px);
-}
-
-.random-drink {
-  width: min(100%, 760px);
-}
-
-.random-header {
-  margin-bottom: 1.75rem;
-}
-
-.random-header > p,
-.random-drink-eyebrow {
-  margin: 0 0 0.5rem;
-  color: var(--brand-hot-pink);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.random-header h1 {
-  margin: 0;
-  color: var(--brand-chartreuse);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.04em;
-}
-
-.random-drink {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
-  padding: clamp(1rem, 3vw, 1.75rem);
-  border: 1px solid var(--border-subtle);
-  border-radius: 1.5rem;
-  background: var(--surface);
-  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 45%);
-}
-
-.random-drink-photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 1rem;
-  background: var(--surface-raised);
-  object-fit: cover;
-}
-
-.random-drink-content h2 {
-  margin: 0;
-  color: var(--brand-chartreuse);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  letter-spacing: -0.035em;
-}
-
-.random-drink-category {
-  display: inline-block;
-  margin: 0.9rem 0 0;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  background: var(--brand-chartreuse);
-  color: var(--brand-jet-black);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
 .random-drink-instructions {
   margin: 1.25rem 0 0;
   color: var(--text-muted);
-  font-size: 1rem;
   line-height: 1.75;
 }
-
 .random-drink-actions {
-  width: min(100%, 980px);
-  margin: 1.5rem auto 0;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.random-drink-actions > button:not(.random-drink-button) {
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--brand-chartreuse);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--brand-chartreuse);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.random-drink-actions > button:not(.random-drink-button):hover {
+  transform: translateY(-2px);
+  background: var(--brand-chartreuse);
+  color: var(--brand-jet-black);
+}
+
+.random-drink-actions > button:focus-visible {
+  outline: 3px solid var(--brand-hot-pink);
+  outline-offset: 3px;
 }
 
 .random-drink-button {
@@ -405,32 +382,45 @@
   border: 0;
   border-radius: 999px;
   background: var(--brand-hot-pink);
-  box-shadow: 0 0.5rem 1.25rem rgb(255 45 168 / 20%);
   color: var(--brand-jet-black);
   cursor: pointer;
   font: inherit;
   font-weight: 650;
-  transition:
-    background-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+  transition: transform 160ms ease, background-color 160ms ease;
 }
-
 .random-drink-button:hover {
   transform: translateY(-2px);
   background: #ff63be;
-  box-shadow: 0 0.75rem 1.5rem rgb(255 45 168 / 28%);
 }
 
-.random-drink-button:focus-visible {
-  outline: 3px solid var(--brand-chartreuse);
-  outline-offset: 3px;
-}
+@media (max-width: 760px) {
+  .popular-drinks-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
+  }
 
-.random-loading {
-  width: min(100%, 980px);
-  margin: 0 auto;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
+  .popular-drinks-header .left {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
 
+  .popular-drinks-header .right {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .popular-drinks-header .random {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .browse-letters {
+    grid-row: 3;
+  }
+
+  .popular-drinks-header .random button {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    font-size: 0.85rem;
+  }
+}
