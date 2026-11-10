@@ -1,40 +1,31 @@
-import axios from "axios";
-import { useState } from "react";
+
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 import "../RandomUser/RandomUser.css";
 
 const Randomuser = () => {
-  const [user, setUser] = useState(null);
 
-  const randomuser = async () => {
-    try {
-      const response = await axios.get("https://randomuser.me/api");
-      const userData = response.data.results[0];
-      console.log(userData);
-      setUser(userData);
-    } catch (error) {
-      alert("Error Fetching error");
-      console.log("Error fetching user:", error);
-    }
-  };
+  const {random} = useContext(UserContext)
+  
   return (
     <div className="container">
       <div className="card-detail">
-        {user && (
+        {random && (
           <>
             <div className="logo">
-              <img src={user.picture.medium} alt="User profile" />
+              <img src={random.picture.medium} alt="User profile" />
             </div>
             <div className="user-detail">
               <h3>
-                {user.name.first} {user.name.last}
+                {random.name.first} {random.name.last}
               </h3>
-              <p>{user.email}</p>
-              <p>{user.location.country}</p>
+              <p>{random.email}</p>
+              <p>{random.location.country}</p>
             </div>
           </>
         )}
       </div>
-      <button onClick={randomuser}>Random User</button>
+      <button >Random User</button>
     </div>
   );
 };

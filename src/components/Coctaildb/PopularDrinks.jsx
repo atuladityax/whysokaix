@@ -1,37 +1,21 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+
+import { useContext, useState } from "react";
 import "./Coctaildb.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 const AllDrinks = () => {
-  const [drinks, setDrinks] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  
   const [search, setSearch] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
   const navigate = useNavigate();
   const[state,setState] = useState("")
-
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-  useEffect(() => {
-    const getAllDrinks = async () => {
-      try {
-        const responses = await Promise.all(
-          alphabet.map((letter) =>axios.get(
-              `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`,
-            ),
-          ),
-        );
-        setDrinks(responses.flatMap((res) => res.data.drinks || []));
-      } catch (error) {
-        console.log("Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const {drinks , loading} = useContext(UserContext);
 
-    getAllDrinks();
-  }, []);
+  
   const handleNavigate = (data)=>{
     setState(data)
 navigate("/ingredient/" + data.idDrink)

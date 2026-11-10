@@ -1,38 +1,25 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import "./Coctaildb.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 const Coctaildb = () => {
-  const [drinks, setDrinks] = useState(null);
   const navigate = useNavigate("");
-  const getCocktail = async () => {
-    try {
-      const response = await axios.get(
-        "https://www.thecocktaildb.com/api/json/v1/1/random.php",
-      );
 
-      const data = response.data;
-      setDrinks(data);
-    } catch (error) {
-      console.error("It Not Able to Fetch Right Now ", error);
-    }
-  };
-  useEffect(() => {
-    getCocktail();
-  }, []);
+  const { random , getCocktail } = useContext(UserContext);
 
-  if (!drinks) {
+  console.log(random);
+
+  if (!random) {
     return (
       <main className="random-page">
         <p className="random-loading">Finding a drink for you...</p>
       </main>
     );
   }
-  const drink = drinks.drinks[0];
+  const drink = random.drinks[0];
   return (
     <div className="random-page">
-     
       <header className="random-header">
         <p>THE COCKTAIL GUIDE</p>
         <h1>Today's pour</h1>
@@ -53,12 +40,8 @@ const Coctaildb = () => {
         </div>
       </section>
       <div className="random-drink-actions">
-         <button
-      onClick={() => navigate("/")}
-      >Back</button>
-        <button className="random-drink-button" onClick={getCocktail}>
-          Discover another drink
-        </button>
+        <button onClick={() => navigate("/")}>Back</button>
+        <button onClick={() =>getCocktail() } className="random-drink-button">Discover another drink</button>
       </div>
     </div>
   );
